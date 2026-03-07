@@ -9,51 +9,30 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 <style>
-
 body{
-margin:0;
-background:#111;
-color:white;
-font-family:sans-serif;
+  margin:0;
+  font-family:sans-serif;
 }
 
-.hero,
-.gallery,
-.footer{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:40px;
+.horizontal-section{
+  height:100vh;
+  overflow:hidden;
 }
 
-.hero{
-background:#ff00fb;
+.horizontal-container{
+  display:flex;
+  height:100vh;
 }
 
-.gallery{
-background:#222;
-}
-
-.footer{
-background:#333;
-}
-
-/* Story Section */
-
-.story-section{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:#000;
-}
-
-.story-box{
-width:120px;
-height:120px;
-background:#00ff88;
-border-radius:12px;
+.panel{
+  min-width:100vw;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:60px;
+  background:#111;
+  color:white;
 }
 
 </style>
@@ -61,37 +40,35 @@ border-radius:12px;
 
 <body>
 
-<section class="hero">
-Hero Section
-</section>
-
-<section class="story-section">
-<div class="story-box"></div>
-</section>
-
-<section class="gallery">
-Gallery
-</section>
-
-<section class="footer">
-Footer
+<section class="horizontal-section">
+  <div class="horizontal-container">
+    <div class="panel">Panel 1</div>
+    <div class="panel">Panel 2</div>
+    <div class="panel">Panel 3</div>
+    <div class="panel">Panel 4</div>
+    <div class="panel">Panel 5</div>
+  </div>
 </section>
 
 <script>
 
 gsap.registerPlugin(ScrollTrigger);
 
-gsap.to(".story-box",{
-x:400,
-rotation:360,
 
-scrollTrigger:{
-trigger:".story-section",
-start:"top top",
-end:"+=500",
-scrub:true,
-pin:true
-}
+const panels = gsap.utils.toArray(".panel");
+
+gsap.to(panels, {
+
+  xPercent:-100 * (panels.length - 1),
+  ease: "none",
+
+  scrollTrigger: {
+    trigger: ".horizontal-section",
+    start: "top top",
+    end: "+=3000",
+    scrub: true,
+    pin: true
+  }
 
 });
 
