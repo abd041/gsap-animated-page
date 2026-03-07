@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GSAP ScrollTrigger Story</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<style>
+
+body{
+margin:0;
+background:#111;
+color:white;
+font-family:sans-serif;
+}
+
+.hero,
+.gallery,
+.footer{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:40px;
+}
+
+.hero{
+background:#ff00fb;
+}
+
+.gallery{
+background:#222;
+}
+
+.footer{
+background:#333;
+}
+
+/* Story Section */
+
+.story-section{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#000;
+}
+
+.story-box{
+width:120px;
+height:120px;
+background:#00ff88;
+border-radius:12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+Hero Section
+</section>
+
+<section class="story-section">
+<div class="story-box"></div>
+</section>
+
+<section class="gallery">
+Gallery
+</section>
+
+<section class="footer">
+Footer
+</section>
+
+<script>
+
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.to(".story-box",{
+x:400,
+rotation:360,
+
+scrollTrigger:{
+trigger:".story-section",
+start:"top top",
+end:"+=1000",
+scrub:true,
+pin:true
+}
+
+});
+
+</script>
+
+</body>
+</html>
