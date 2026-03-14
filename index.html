@@ -25,6 +25,7 @@
     import { OrbitControls } from "https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js";
 
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color("#111111");
 
     const camera = new THREE.PerspectiveCamera(
       75,
@@ -39,9 +40,20 @@
     document.body.appendChild(renderer.domElement);
 
     const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial({ color: "blue" });
+  const material = new THREE.MeshStandardMaterial({
+  color: "red"
+});
     const cube = new THREE.Mesh(geometry, material);
     scene.add(cube);
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+scene.add(ambientLight);
+
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+directionalLight.position.set(3, 3, 5);
+scene.add(directionalLight);
+
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
@@ -52,7 +64,7 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    
+
 
     function animate() {
       requestAnimationFrame(animate);
