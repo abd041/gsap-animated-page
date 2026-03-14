@@ -1,57 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ThreeJS Lecture 1</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThreeJS Lecture 1</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
 </head>
-
 <body>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js"
+      }
+    }
+  </script>
 
-<script type="module">
+  <script type="module">
+    import * as THREE from "three";
+    import { OrbitControls } from "https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js";
 
-import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
+    const scene = new THREE.Scene();
 
-const scene = new THREE.Scene()
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+    camera.position.z = 4;
 
-const camera = new THREE.PerspectiveCamera(
-75,
-window.innerWidth / window.innerHeight,
-0.1,
-1000
-)
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
 
-const renderer = new THREE.WebGLRenderer()
-renderer.setSize(window.innerWidth, window.innerHeight)
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshBasicMaterial({ color: "blue" });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
 
-document.body.appendChild(renderer.domElement)
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
 
-const geometry = new THREE.BoxGeometry()
+    window.addEventListener("resize", () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
 
-const material = new THREE.MeshBasicMaterial({
-color: "red"
-})
+    
 
-const cube = new THREE.Mesh(geometry, material)
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
 
-scene.add(cube)
-
-camera.position.z = 5
-
-function animate(){
-
-requestAnimationFrame(animate)
-
-cube.rotation.x += 0.01
-
-
-renderer.render(scene, camera)
-
-}
-
-animate()
-
-</script>
-
+    animate();
+  </script>
 </body>
 </html>
