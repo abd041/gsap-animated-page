@@ -5,5 +5,4 @@ document.addEventListener("DOMContentLoaded" ,(e)=>{
         duration:2,
         ease:"back" 
     })
-
 })
