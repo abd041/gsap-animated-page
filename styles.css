@@ -3,3 +3,17 @@
     height: 200px;
     background-color: green;
 }
+
+
+#play, #pause, #resume, #restart, #reverse{
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    background-color: aquamarine;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+}
