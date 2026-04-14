@@ -2,8 +2,13 @@ document.addEventListener("DOMContentLoaded" ,(e)=>{
     console.log(e , gsap)
    let tweenTp = gsap.to(".box" , {
         x:300,
-        duration:16,
-        ease:"back" 
+        duration:3,
+        ease:"back",
+        onComplete:()=>{
+            console.log("animation complted")
+        },
+        repeat:-1 , // to run it for infinite time
+
     })
 
 
