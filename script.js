@@ -15,13 +15,25 @@ document.addEventListener("DOMContentLoaded" ,(e)=>{
 // Gsap from method to animate the objects from a specific position to current position
 
 
-gsap.from(".box" ,{
+// gsap.from(".box" ,{
+//     x:300,
+//     opacity:0,
+//     duration:2
+
+// })
+
+
+// gsap fromto method lets you decide the both starting and ending values
+
+ gsap.fromTo(".box" , {
+    opacity:0.2,
+    x:0
+ } ,{
+    opacity:1,
     x:300,
-    opacity:0,
-    duration:2
-
-})
-
+    repeat: -1,   // infinite loop
+    yoyo: true 
+ })
 
     document.querySelector("#play").onclick =()=> tweenTp.play()
     document.querySelector("#pause").onclick =()=> tweenTp.pause()
