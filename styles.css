@@ -4,14 +4,27 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: Arial, sans-serif;
+  background: #050816;
+  color: white;
+}
+
+/* HERO */
 .hero {
   height: 100vh;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #050816;
-  color: white;
   text-align: center;
+  overflow: hidden;
+}
+
+/* CONTENT ABOVE CARDS */
+.hero-content {
+  position: relative;
+  z-index: 2;
 }
 
 .hero-title {
@@ -21,7 +34,7 @@
 
 .hero-text {
   font-size: 18px;
-  margin-bottom: 30px;
+  margin: 30px 0;
   color: rgba(255,255,255,0.7);
 }
 
@@ -32,4 +45,75 @@
   color: black;
   cursor: pointer;
   font-weight: bold;
+}
+
+/* TEXT REVEAL */
+.line {
+  display: block;
+  overflow: hidden;
+}
+
+.line span {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* CARDS */
+.cards {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card {
+  position: absolute;
+  width: 120px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+/* LEFT */
+.card-1 { left: 5%; top: 20%; }
+.card-2 { left: 10%; top: 50%; }
+.card-3 { left: 3%; top: 75%; }
+
+/* RIGHT */
+.card-4 { right: 5%; top: 20%; }
+.card-5 { right: 10%; top: 50%; }
+.card-6 { right: 3%; top: 75%; }
+
+/* NEXT SECTION */
+.section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0f25;
+}
+
+.section-title {
+  font-size: clamp(60px, 10vw, 160px);
+}
+
+
+.features {
+  padding: 150px 8%;
+  background: #050816;
+}
+
+.feature {
+  margin-bottom: 120px;
+  max-width: 600px;
+}
+
+.feature-title {
+  font-size: clamp(30px, 5vw, 60px);
+  margin-bottom: 20px;
+}
+
+.feature-text {
+  font-size: 18px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
 }
