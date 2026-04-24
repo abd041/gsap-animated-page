@@ -65,10 +65,73 @@ document.addEventListener("DOMContentLoaded", () => {
     scrollTrigger: {
       trigger: feature,
       start: "top 80%",
-      
+
     }
   });
 
+});
+
+
+
+
+
+const items = document.querySelectorAll(".sticky-item");
+const cards = document.querySelectorAll(".sticky-card");
+
+gsap.to({}, {
+  scrollTrigger: {
+    trigger: ".sticky-section",
+    start: "top top",
+    end: "bottom bottom",
+    scrub: true,
+    onUpdate: (self) => {
+
+      const progress = self.progress;
+
+      let index = 0;
+
+      if (progress < 0.33) index = 0;
+      else if (progress < 0.66) index = 1;
+      else index = 2;
+
+      // reset all
+      items.forEach(i => i.classList.remove("active"));
+      cards.forEach(c => c.classList.remove("active"));
+
+      // activate current
+      items[index].classList.add("active");
+      cards[index].classList.add("active");
+
+    }
+  }
+});
+
+
+const panels = gsap.utils.toArray(".panel");
+
+gsap.to(panels, {
+  xPercent: -100 * (panels.length - 1),
+  ease: "none",
+  scrollTrigger: {
+    trigger: ".horizontal",
+    pin: true,
+    scrub: 1,
+    snap: 1 / (panels.length - 1),
+    end: () => "+=" + document.querySelector(".horizontal-track").offsetWidth
+  }
+});
+
+
+panels.forEach((panel) => {
+  gsap.from(panel, {
+    opacity: 0,
+    scale: 0.8,
+    scrollTrigger: {
+      trigger: panel,
+      containerAnimation: ScrollTrigger.getAll()[0],
+      start: "left center"
+    }
+  });
 });
 
 });
