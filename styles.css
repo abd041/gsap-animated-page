@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .hero {
   height: 100vh;
   display: flex;
@@ -9,8 +15,8 @@
 }
 
 .hero-title {
-  font-size: 60px;
-  margin-bottom: 20px;
+  font-size: clamp(40px, 8vw, 80px);
+  line-height: 1.1;
 }
 
 .hero-text {
